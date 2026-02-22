@@ -8,9 +8,10 @@ app = FastAPI(title="Visa Predictor API", version="1.0.0")
 def startup():
     load_model()
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health():
     return {"status": "ok"}
+
 
 @app.post("/api/v1/predict", response_model=VisaResponse)
 def predict(data: VisaRequest):
